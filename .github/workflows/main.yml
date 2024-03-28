@@ -3,7 +3,7 @@ name: Open Documentation Issue
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   open_issue:
@@ -15,7 +15,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          route: POST /repos/${{ github.repository }}/issues
+          route: POST /repos/{owner}/{repo}/issues
+          owner: ${{ github.repository_owner }}
+          repo: your-documentation-repo
           mediaType: application/json
           title: Update documentation for changes in ${{ github.repository }}
           body: |
