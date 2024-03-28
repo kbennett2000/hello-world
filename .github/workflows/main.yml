@@ -15,13 +15,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          route: POST /repos/{owner}/{repo}/issues
+          route: POST /repos/${{ github.repository }}/issues
+          mediaType: '{"title": "Update documentation for changes in ${{ github.repository }}", "body": "Changes have been made in the ${{ github.repository }} repository.\nPlease review and update the documentation accordingly.\n\nCommit: ${{ github.sha }}\nRepository: ${{ github.repository }}"}'
           owner: kbennett2000
           repo: hello-world-docs
           title: Update documentation for changes in ${{ github.repository }}
           body: |
             Changes have been made in the ${{ github.repository }} repository.
             Please review and update the documentation accordingly.
-
             Commit: ${{ github.sha }}
             Repository: ${{ github.repository }}
