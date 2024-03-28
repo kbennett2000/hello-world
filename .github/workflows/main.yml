@@ -6,15 +6,22 @@ on:
       - master
 
 jobs:
-  open-issue:
+  open_issue:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Open an Issue in Documentation Repo
-        uses: peter-evans/create-issue-from-file@v3
+      - name: Open documentation issue
+        uses: octokit/request-action@v2.x
         env:
           GITHUB_TOKEN: ${{ secrets.DOCUMENTATIONTOKEN }}
         with:
-          title: "Documentation Update Needed"
-          content-filepath: /path/to/a/file/containing/issue/body.md  # optional, you can also directly write the content here
-          labels: documentation, update
-          repository: kbennett2000/hello-world-docs
+          route: POST /repos/{owner}/{repo}/issues
+          owner: ${{ github.repository_owner }}
+          repo: hello-world-docs
+          mediaType: application/json
+          title: Update documentation for changes in ${{ github.repository }}
+          body: |
+            Changes have been made in the ${{ github.repository }} repository.
+            Please review and update the documentation accordingly.
+            Commit: ${{ github.sha }}
+            Repository: ${{ github.repository }}
