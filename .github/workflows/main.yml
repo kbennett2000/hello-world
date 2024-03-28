@@ -3,7 +3,7 @@ name: Open Documentation Issue
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   open_issue:
