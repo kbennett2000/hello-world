@@ -15,9 +15,16 @@ jobs:
         with:
           github-token: ${{ secrets.DOCUMENTATIONTOKEN }}
           script: |
+            const compareUrl = `https://github.com/${{ github.repository }}/compare/${{ github.event.before }}...${{ github.sha }}`;
+            const issueBody = `Changes have been made in the ${{ github.repository }} repository. Please review and update the documentation accordingly.
+            
+            Commit: ${{ github.sha }}
+            Repository: ${{ github.repository }}
+            Changes: ${compareUrl}`;
+
             github.rest.issues.create({
               owner: context.repo.owner,
               repo: 'hello-world-docs',
               title: 'Update documentation for changes in ${{ github.repository }}',
-              body: 'Changes have been made in the ${{ github.repository }} repository.\nPlease review and update the documentation accordingly.\nCommit: ${{ github.sha }}\nRepository: ${{ github.repository }}'
-            })
+              body: issueBody
+            });
