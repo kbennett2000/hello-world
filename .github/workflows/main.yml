@@ -12,7 +12,7 @@ jobs:
       - name: Open an Issue in Documentation Repo
         uses: peter-evans/create-issue-from-file@v3
         env:
-          GITHUB_TOKEN: ${{ secrets.DOC_REPO_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DOCUMENTATIONTOKEN }}
         with:
           title: "Documentation Update Needed"
           content-filepath: /path/to/a/file/containing/issue/body.md  # optional, you can also directly write the content here
