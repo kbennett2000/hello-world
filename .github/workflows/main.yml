@@ -21,6 +21,5 @@ jobs:
           body: |
             Changes have been made in the ${{ github.repository }} repository.
             Please review and update the documentation accordingly.
-
             Commit: ${{ github.sha }}
             Repository: ${{ github.repository }}
