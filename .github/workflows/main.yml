@@ -11,13 +11,13 @@ jobs:
 
     steps:
       - name: Open documentation issue
-        uses: octokit/request-action@v2.x
-        env:
-          GITHUB_TOKEN: ${{ secrets.DOCUMENTATIONTOKEN }}
+        uses: actions/github-script@v6
         with:
-          route: POST /repos/${{ github.repository_owner }}/hello-world-docs/issues
-          mediaType: |
-            {
-              "title": "Update documentation for changes in ${{ github.repository }}",
-              "body": "Changes have been made in the ${{ github.repository }} repository.\nPlease review and update the documentation accordingly.\nCommit: ${{ github.sha }}\nRepository: ${{ github.repository }}"
-            }
+          github-token: ${{ secrets.DOCUMENTATIONTOKEN }}
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: 'hello-world-docs',
+              title: 'Update documentation for changes in ${{ github.repository }}',
+              body: 'Changes have been made in the ${{ github.repository }} repository.\nPlease review and update the documentation accordingly.\nCommit: ${{ github.sha }}\nRepository: ${{ github.repository }}'
+            })
