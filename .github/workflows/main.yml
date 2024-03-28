@@ -17,4 +17,4 @@ jobs:
           title: "Documentation Update Needed"
           content-filepath: /path/to/a/file/containing/issue/body.md  # optional, you can also directly write the content here
           labels: documentation, update
-          repository: username/documentation-repo-name
+          repository: kbennett2000/hello-world-docs
