@@ -13,7 +13,7 @@ jobs:
       - name: Open documentation issue
         uses: octokit/request-action@v2.x
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DOCUMENTATIONTOKEN }}
         with:
           route: POST /repos/${{ github.repository_owner }}/hello-world-docs/issues
           mediaType: |
